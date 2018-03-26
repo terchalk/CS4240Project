@@ -10,10 +10,19 @@ public class Hotspot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler
     public GameObject TargetPanorama;
 	
 	// Update is called once per frame
-	void Update () 
+    void Update () 
     {
         transform.Rotate(0, 0.5f, 0);
-	}
+    }
+	
+    void FixedUpdate ()
+    {
+        if (Input.GetKeyDown("space"))
+        {
+            Debug.Log("works");
+            this.OnPointerClick(null);
+        }
+    }
 
     public void OnPointerClick(PointerEventData eventData) 
     {
