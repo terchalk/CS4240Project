@@ -2,3 +2,5 @@
 ./Assets/Demigiant
 ./Assets/Resources
 ./Assets/Plugins
+
+./Library
