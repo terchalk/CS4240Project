@@ -1,4 +1,0 @@
-./Assets/SteamVR
-./Assets/Demigiant
-./Assets/Resources
-./Assets/Plugins
