@@ -8,10 +8,9 @@ public class MapPin : MonoBehaviour
 {
 
     public SteamVR_TrackedObject trackedObject;
-    public GameObject ThisPanorama;
-    public GameObject TargetPanorama;
+    public GameObject info;
 
-    private GameObject portal = null;
+    private GameObject pin = null;
     private SteamVR_Controller.Device device;
     private Valve.VR.EVRButtonId triggerButton = Valve.VR.EVRButtonId.k_EButton_SteamVR_Trigger;
 
@@ -23,9 +22,8 @@ public class MapPin : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Rotate(0, 0.5f, 0);
         device = SteamVR_Controller.Input((int)trackedObject.index);
-        if (device.GetPressDown(triggerButton) && portal != null)
+        if (device.GetPressDown(triggerButton) && pin != null)
         {
             changeScene();
         }
@@ -33,10 +31,7 @@ public class MapPin : MonoBehaviour
 
     public void changeScene()
     {
-        if (portal != null)
-        {
-            OnPointerClick();
-        }
+        OnPointerClick();
     }
 
     public void OnPointerClick()
@@ -54,22 +49,21 @@ public class MapPin : MonoBehaviour
         if (TourManager.SetCameraPosition != null)
         {
             Debug.Log("camera not null");
-            TourManager.SetCameraPosition(TargetPanorama.transform.position, ThisPanorama.transform.position);
         }
 
-        Debug.Log("Target Pano is " + TargetPanorama + " and this pano is " + ThisPanorama);
-        TargetPanorama.gameObject.SetActive(true);
-        ThisPanorama.gameObject.SetActive(false);
+        info.gameObject.SetActive(!info.gameObject.activeInHierarchy);
+        pin = null;
+
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        portal = other.gameObject;
+        pin = other.gameObject;
         //OnPointerClick(null);
     }
 
     private void OnTriggerExit(Collider other)
     {
-        portal = null;
+        pin = null;
     }
 }

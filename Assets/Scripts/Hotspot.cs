@@ -22,7 +22,6 @@ public class Hotspot : MonoBehaviour {
     // Update is called once per frame
     void Update () 
     {
-        transform.Rotate(0, 0.5f, 0);
         device = SteamVR_Controller.Input((int)trackedObject.index);
         if (device.GetPressDown(triggerButton) && portal != null)
         {
@@ -55,10 +54,11 @@ public class Hotspot : MonoBehaviour {
             Debug.Log("camera not null");
             TourManager.SetCameraPosition(TargetPanorama.transform.position, ThisPanorama.transform.position);
         }
-
+        Debug.Log(portal);
         Debug.Log("Target Pano is " + TargetPanorama + " and this pano is " + ThisPanorama);
         TargetPanorama.gameObject.SetActive(true);
         ThisPanorama.gameObject.SetActive(false);
+        portal = null;
     }
 
     private void OnTriggerEnter(Collider other)
