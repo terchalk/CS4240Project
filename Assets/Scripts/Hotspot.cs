@@ -24,7 +24,7 @@ public class Hotspot : MonoBehaviour {
     {
         transform.Rotate(0, 0.5f, 0);
         device = SteamVR_Controller.Input((int)trackedObject.index);
-        if (device.GetPressDown(triggerButton))
+        if (device.GetPressDown(triggerButton) && portal != null)
         {
             changeScene();
         }
